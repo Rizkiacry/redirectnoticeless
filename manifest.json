@@ -1,0 +1,38 @@
+{
+  "manifest_version": 2,
+  "name": "Redirect Noticeless",
+  "version": "2.0.0",
+  "description": "Intelligently bypasses redirect notices with stealth techniques",
+  
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "webNavigation",
+    "webRequest",
+    "webRequestBlocking",
+    "*://*/*"
+  ],
+  
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  
+  "content_scripts": [
+    {
+      "matches": [
+        "*://vertexaisearch.cloud.google.com/*",
+        "*://www.google.com/url*",
+        "*://google.com/url*",
+        "*://accounts.google.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  
+  "web_accessible_resources": [
+    "stealth.js"
+  ]
+}
